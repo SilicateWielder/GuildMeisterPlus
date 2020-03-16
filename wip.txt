@@ -1,0 +1,16 @@
+WIP 0.1.6 Changelog:
+ - (03/10/2020) Commands are now parsed and passed onto a wrapper that handles permissions and errors
+ - (03/10/2020) Commands are now loaded by the cmdWrapper, instaed of loaderMain.
+ - (03/10/2020) Commands now have a properties header, defining help menu texts, categories, default permission requirements, etc.
+ - (03/12/2020) Help menu listings are now grabbed from the loaded commands.
+ 
+ - (03/14/2020) Verified that DbStat is moved to procedures.
+ - (03/15/2020) Servers now registered through procedures.
+ - (03/16/2020) Server channels now retrieved/assigned through procedures.
+ - (03/16/2020) Server settings now retrieved/assigned through procedures.
+ - (03/16/2020) Users now registered through procedures.
+ - (03/16/2020) User info now retrieved through procedures.
+ 
+ - (03/16/20) (MileStone) All SQL is now performed through procedures
+
+ - (03/16/20) (Security) Credentials now stored seperately from main config file.

@@ -1,0 +1,42 @@
+0.1.4.7 (March 9 2020)
+ - Strikes now perform more detailed logging
+ - Strike logs can be sent to the 'modlogs' channel within a server.
+
+0.1.4.2 (February 18 2020)
+ - Bug Fixes: Command Logging not splitting strung-together commands.
+
+0.1.4 (January 30th 2020)
+ - Features:
+
+ - Bug Fixes:
+   - Fixed bug preventing bot from reconnecting DB.
+
+0.1.3 (January 26th 2020)
+ - Features:
+    - Added pe graph, you can now view your growth over time and potentially check for errors in your records.
+    - Added stat bot, now anyone can see the bot's current status
+ - Bug Fixes:
+    - MySQL was disconnecting the bot from the database, this was causing repeated downtime. Assuming everything worked correctly the bot should automatically reconnecting to it's database.
+
+0.1.2 (January 24th 2020)
+ - Fixed bug that allowed non-developers to send inter-server announcements, this was an urgent patch
+
+0.1.1 (January 21st 2020)
+ - Pe commands now only work within NSFW channels.
+ - Bot will no longer reply to invalid commands.
+ - Help Menu changed to prevent rate limiting.
+
+0.1.0 (January 20th 2020)
+ - Migration from SQLite to MySQL
+ - Strikes can now be removed from users
+ - Strikes can now be given or removed if a user has the kick permission, as an alternative to the ban or admin permissions.
+ - Goal measurements can now be set to 0 if a member does not want them displayed
+ - Bugs can now be reported using the 'bug' command
+ - Features can now be requested using the 'request' command
+ - Bot can now automatically reconnect to discord if it's disconnected, probably
+ - Basic graphing implementation, crude and needs work. (statPE has hit 400 lines, and is a mess :( ))
+
+ - PE records can now be cleared, for those wishing to start fresh
+
+ As usual, please report any bugs or problems you encounter to SilicateWielder#1261
+ Or, better yet, use the shiny new 'bug' command!
