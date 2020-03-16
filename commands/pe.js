@@ -1,11 +1,13 @@
+// Added for specific servers
+
 exports.properties = {
 	devOnly: false,
 	adminOnly: false,
 	modAndUp: false,
 	listed: true,
 	category: 'utility',
-	helpShort: 'Changes your nickname',
-	helpLong: 'Changes your nickname'
+	helpShort: 'Tracks PE progress',
+	helpLong: 'Tracks PE progress'
 }
 
 const dbMain = require('./../lib/dbMain.js');
