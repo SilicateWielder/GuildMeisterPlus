@@ -48,7 +48,7 @@ exports.command = async function(data)
 	let uid = user.id;
 	
 	let serverConfig = await dbMain.getServerSettings(sid);
-	let peEnabled = serverConfig[0].enabled_pe;
+	let peEnabled = serverConfig[0][0].enabled_pe;
 
 	// If this command is not enabled, do nothing.
 	if(peEnabled != 1 || message.channel.nsfw == false)
