@@ -7,7 +7,7 @@ exports.properties = {
 	category: 'misc',
 	helpShort: 'sends a welcome message to the user.',
 	helpLong: 'Sends a suggestion to the local server, provided a suggestions channel has been set'
-}
+};
 
 let dbMain = require('./../lib/dbMain.js');
 
@@ -21,7 +21,7 @@ exports.command = async function(data)
 	// Obtain actual guild and member objects.
 	if(data.message == null)
 	{
-		guild = data.member.guild.id
+		guild = data.member.guild.id;
 		member = data.member;
 	} else {
 		member = data.message.member;
@@ -40,4 +40,4 @@ exports.command = async function(data)
 		
 		member.send(customization.welcome_message);
 	};
-}
+};

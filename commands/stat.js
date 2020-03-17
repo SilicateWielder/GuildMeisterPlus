@@ -1,7 +1,7 @@
 // Command properties.
 exports.properties = {
 	devOnly: false,
-	adminOnly: true,
+	adminOnly: false,
 	modAndUp: false,
 	listed: true,
 	category: 'utility',

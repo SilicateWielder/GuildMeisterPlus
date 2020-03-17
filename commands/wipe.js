@@ -7,7 +7,7 @@ exports.properties = {
 	category: 'utility',
 	helpShort: 'Clear all of your records from the bot (Not including moderation/strike logs)',
 	helpLong: 'Clear all of your records from the bot (Not including moderation/strike logs)'
-}
+};
 
 let dbMain = require('./../lib/dbMain.js');
 
@@ -19,4 +19,4 @@ exports.command = async function(data)
 	let command = data.syntax;
 	let args = data.args;
 	let argsRaw = data.argsRaw;
-}
+};

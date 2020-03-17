@@ -1,4 +1,4 @@
-1// Command properties.
+// Command properties.
 exports.properties = {
 	devOnly: false,
 	adminOnly: false,
@@ -7,7 +7,7 @@ exports.properties = {
 	category: 'general',
 	helpShort: 'Display\'s this help listing, and more!',
 	helpLong: 'add the name of a command, or a command category to get that listing or command\'s details'
-}
+};
 
 global.helpMenu = {};
 
@@ -24,7 +24,7 @@ exports.init = async function()
 	ErrLog.log(JSON.stringify(keys));
 	for(let i = 0; i < keys.length; i++)
 	{
-		let currentCommand = keys[i]
+		let currentCommand = keys[i];
 		let category = global.commands[currentCommand].properties.category;
 		
 		if(category === "undefined")
@@ -41,7 +41,7 @@ exports.init = async function()
 	}
 	
 	ErrLog.log("" + JSON.stringify(global.helpMenu));
-}
+};
 
 exports.command = async function(data)
 {
@@ -52,7 +52,7 @@ exports.command = async function(data)
 	
 	for(i = 0; i < categories.length; i++)
 	{
-		let categoryName = categories[i]
+		let categoryName = categories[i];
 		let category = global.helpMenu[categoryName];
 		
 		let commands = Object.keys(category);
@@ -68,4 +68,4 @@ exports.command = async function(data)
 	}
 	
 	data.message.channel.send("test" + text);
-}
+};

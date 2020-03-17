@@ -7,7 +7,7 @@ exports.properties = {
 	category: 'developer',
 	helpShort: 'Sends a suggestion to the local server.',
 	helpLong: 'Sends a suggestion to the local server, provided a suggestions channel has been set'
-}
+};
 
 let dbMain = require('./../lib/dbMain.js');
 
@@ -15,7 +15,7 @@ function suggestionMenu(msg)
 {
 	msg.react("👍");
 	msg.react("👎");
-}
+};
 
 exports.command = async function(data)
 {
@@ -44,4 +44,4 @@ exports.command = async function(data)
 	} else {
 		message.reply("it seems that no suggestion channel has been set for this server, please contact an admin or set it yourself.");
 	}
-}
+};

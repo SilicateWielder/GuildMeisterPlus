@@ -7,7 +7,7 @@ exports.properties = {
 	category: 'developer',
 	helpShort: 'View the developer\'s WIP changelog for future releases',
 	helpLong: 'View the developer\'s WIP changelog for future releases'
-}
+};
 
 let dbMain = require('./../lib/dbMain.js');
 
@@ -22,4 +22,4 @@ exports.command = async function(data)
 	roadmap = fs.readFileSync('./wip.txt', 'utf8');
 	
 	message.channel.send("Current WIP changelog: \n```" + roadmap + "```");
-}
+};
