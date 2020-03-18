@@ -1,4 +1,4 @@
-WIP 0.1.6 Changelog:
+WIP 0.1.7 Changelog:
  - (03/10/2020) Commands are now parsed and passed onto a wrapper that handles permissions and errors
  - (03/10/2020) Commands are now loaded by the cmdWrapper, instaed of loaderMain.
  - (03/10/2020) Commands now have a properties header, defining help menu texts, categories, default permission requirements, etc.
@@ -14,3 +14,5 @@ WIP 0.1.6 Changelog:
  - (03/16/20) (MileStone) All SQL is now performed through procedures
 
  - (03/16/20) (Security) Credentials now stored seperately from main config file.
+ 
+ - (03/17/20) (New Command) music command added, experimental and usable by devs only.
