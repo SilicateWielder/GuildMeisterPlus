@@ -25,19 +25,26 @@ exports.init = async function()
 	for(let i = 0; i < keys.length; i++)
 	{
 		let currentCommand = keys[i];
-		let category = global.commands[currentCommand].properties.category;
+		let properties = global.commands[currentCommand].properties;
 		
-		if(category === "undefined")
+		if(properties !== undefined)
 		{
-			category = "unassigned";
+			let category = properties.category;
+			
+			if(category === "undefined")
+			{
+				category = "unassigned";
+			}
+			
+			if(global.helpMenu[category] == undefined)
+			{
+				global.helpMenu[category] = {};
+			}
+			
+			global.helpMenu[category][currentCommand] = properties.helpShort;
+		} else {
+			ErrLog.log("ERROR: command '" + currentCommand + "' has no properties defined."); 
 		}
-		
-		if(global.helpMenu[category] == undefined)
-		{
-			global.helpMenu[category] = {};
-		}
-		
-		global.helpMenu[category][currentCommand] = global.commands[currentCommand].properties.helpShort;
 	}
 	
 	ErrLog.log("" + JSON.stringify(global.helpMenu));

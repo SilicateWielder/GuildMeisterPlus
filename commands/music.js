@@ -36,7 +36,7 @@ exports.command = async function(data)
 		return(0);
 	}
 	
-	let cachePath = './resources/cache/' + getParameterByName('v', args[0]) + '.mp4';
+	let cachePath = './resources/cache/' + getParameterByName('v', args[0]) + '.m4a';
 	
 	ErrLog.log("" + cachePath);
 	
@@ -57,7 +57,7 @@ exports.command = async function(data)
 	}
 	
 	if (!fs.existsSync(cachePath)) {
-		const options = ['--format=18']
+		const options = ['--format=140']
 		const info = null;
 		const video = youtubedl(args[0], options, {cwd: __dirname});
 
