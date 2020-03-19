@@ -17,17 +17,7 @@ const units = {'"' : 1, 'in': 1, 'inch': 1, 'inches': 1, 'cm': 0.393701, 'centim
 const types = ['BPEL', 'BPFL', 'BPFSL', 'MSEG', 'MSFG', 'BSEG', 'BSFG']
 const dateMatrix = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
 const monthIndex = {'jan' : '01', 'feb' : '02',	'mar' : '03', 'apr' : '04', 'may' : '05', 'jun' : '06', 'jul' : '07', 'aug' : '08', 'sep' : '09', 'oct' : '10', 'nov' : '11', 'dec' : '12',
-					'january' : '01', 'february' : '02', 'march' : '03', 'april' : '04', 'may' : '05', 'june' : '06', 'july' : '07', 'august' : '08', 'september' : '09', 'october' : '10', 'november' : '11', 'december' : '12'};
-
-function dateSigToDate(l_dateSig)
-{
-	let l_date = {}
-	l_date.year = l_dateSig.slice(6, 8);
-	l_date.month = l_dateSig.slice(4, 6);
-	l_date.day = l_dateSig.slice(0, 4);
-	
-	return l_date;
-}
+					'january' : '01', 'february' : '02', 'march' : '03', 'april' : '04', 'june' : '06', 'july' : '07', 'august' : '08', 'september' : '09', 'october' : '10', 'november' : '11', 'december' : '12'};
 
 function padouble(number)
 {
@@ -41,7 +31,6 @@ function padouble(number)
 
 exports.command = async function(data)
 {
-	let client = data.client;
 	let message = data.message;
 	let sid = message.channel.guild.id;
 	let user = message.member;
@@ -131,14 +120,13 @@ exports.command = async function(data)
 		if(data.args[1] != undefined)
 		{
 			// Get the current date.
-			let date = {}
+			let date = {};
 			date.current = (new Date(Date.now())).toISOString();
 			date.y = date.current.slice(0, 4);
 			date.m = date.current.slice(5, 7);
 			date.d = date.current.slice(8, 10);
 
-			let complete = false;
-			let measureType = 'NNNN';
+			let measureType = null;
 			let measure = 0;
 			
 			let argsType = data.args[1];
@@ -214,14 +202,14 @@ exports.command = async function(data)
 			}
 
 			// Check if month exists and is valid.
-			if(argsYear == undefined || (monthIndex[argsMnth] == undefined && isNaN(parseFloat(argsMnth))) || argsMnth > 12)
+			if((monthIndex[argsMnth] == undefined && isNaN(parseFloat(argsMnth))) || argsMnth > 12)
 			{
 				message.reply("'" + argsMnth + "' is not a valid month, please try again.").then(msg => {msg.delete(10000)});
 				return(0);
 			}
 
 			// Check if day exists and is valid.
-			if(argsYear == undefined || isNaN(parseFloat(argsDay)) || argsDay > 31)
+			if(isNaN(parseFloat(argsDay)) || argsDay > 31)
 			{
 				message.reply("'" + argsDay + "' is not a valid day, please try again.").then(msg => {msg.delete(10000)});
 				return(0);
@@ -239,7 +227,7 @@ exports.command = async function(data)
 			// Create filter for answer.
 			const filter = (reaction, user) => {
 				return reactions.includes(reaction.emoji.name) && user.id == uid;
-			}
+			};
 			
 			// Gather confirmation value.
 			let answer = await m.awaitReactions(filter, { max: 1, time: 30000, errors: ['time'] })
