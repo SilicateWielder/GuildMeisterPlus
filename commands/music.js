@@ -11,6 +11,7 @@ exports.properties = {
 
 const fs = require('fs');
 const youtubedl = require('youtube-dl');
+const dbCache = require('./../lib/dbCache.js');
 
 function getParameterByName(name, url) {
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -28,22 +29,8 @@ exports.command = async function(data)
 	let client = data.client;
 	let args = data.args;
 
-
-	let resourceURL = './resources/radio/sample.mp3';
-	
-	if(args[0] == undefined)
-	{
-		return(0);
-	}
-	
-	let cachePath = './resources/cache/' + getParameterByName('v', args[0]) + '.m4a';
-	
-	ErrLog.log("" + cachePath);
-	
 	// Play media source
-	async function streamAudio(vpath = cachePath, msg = message) {
-		msg.channel.send('...finished caching!');
-	
+	async function streamAudioPath(vpath, msg = message) {	
 		if(message.member.voiceChannel)
 		{
 			const voice_connection = await message.member.voiceChannel.join();
@@ -56,19 +43,54 @@ exports.command = async function(data)
 		}
 	}
 	
-	if (!fs.existsSync(cachePath)) {
-		const options = ['--format=140']
-		const info = null;
-		const video = youtubedl(args[0], options, {cwd: __dirname});
-
-		// Begin playing cached file.
-		let vChannel = message.member.voiceChannelID;
-
-		message.channel.send("caching video...");
-		video.pipe(fs.createWriteStream(cachePath));
-			
-		video.on('end', streamAudio);
+	if(args.length == 0)
+	{
+		return(0);
+	}
+	
+	if(args[0] == 'random')
+	{
+		let tracks = await dbCache.getMusic();
+		
+		let trackNum = Math.floor(Math.random() * tracks.length);
+		
+		let track = tracks[trackNum]
+		
+		message.channel.send(`Now playing ${track.title} posted by ${track.author}`);
+		
+		let audioPath = `./resources/cache/${track.id}.m4a`;
+		ErrLog.log(audioPath);
+		
+		streamAudioPath(audioPath);
 	} else {
-		streamAudio();
+		let cacheId = getParameterByName('v', args[0]);
+		let cachePath = './resources/cache/' + cacheId + '.m4a';
+		
+		
+		
+		ErrLog.log("" + cachePath);
+		
+		// Play media source
+		async function streamAudioDownloaded(vpath = cachePath, msg = message) {
+			msg.channel.send('...finished caching!');
+		
+			streamAudioPath(vpath);
+		}
+		
+		if (!fs.existsSync(cachePath)) {
+			const options = ['--format=140']
+			const info = null;
+			const video = youtubedl(args[0], options, {cwd: __dirname});
+
+			// Begin playing cached file.
+			let vChannel = message.member.voiceChannelID;
+
+			message.channel.send("caching video...");
+			video.pipe(fs.createWriteStream(cachePath));
+				
+			video.on('end', streamAudioDownloaded);
+		} else {
+			streamAudioDownloaded();
+		}
 	}
 }
