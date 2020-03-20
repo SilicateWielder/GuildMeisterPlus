@@ -16,3 +16,6 @@ WIP 0.1.7 Changelog:
  - (03/16/20) (Security) Credentials now stored seperately from main config file.
  
  - (03/17/20) (New Command) music command added, experimental and usable by devs only.
+ - (03/18/20) random switch added to music command which plays tracks logged in the database under the music category.
+ 
+ - (03/20/20) Patched DB reconnection bug, new method is event based and should hopefully be more reliable.
